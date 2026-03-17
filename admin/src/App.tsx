@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { LogOut, BarChart3, Music, Settings, Users } from 'lucide-react'
+import { LogOut, BarChart3, Music, Settings, Users, Loader2 } from 'lucide-react'
+import { supabase } from './lib/supabase'
 import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
 import ClientsPage from './pages/ClientsPage'
@@ -7,16 +8,23 @@ import PromptsPage from './pages/PromptsPage'
 import AudioPage from './pages/AudioPage'
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return !!localStorage.getItem('adminToken')
-  })
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
   const [currentPage, setCurrentPage] = useState('dashboard')
   const [adminEmail, setAdminEmail] = useState('')
 
   useEffect(() => {
-    const email = localStorage.getItem('adminEmail')
-    if (email) setAdminEmail(email)
-  }, [isLoggedIn])
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session)
+      if (session?.user?.email) setAdminEmail(session.user.email)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session)
+      if (session?.user?.email) setAdminEmail(session.user.email)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   const handleLogin = (email: string) => {
     setAdminEmail(email)
@@ -24,12 +32,19 @@ export default function App() {
     setCurrentPage('dashboard')
   }
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminToken')
-    localStorage.removeItem('adminEmail')
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
     setIsLoggedIn(false)
     setAdminEmail('')
     setCurrentPage('dashboard')
+  }
+
+  if (isLoggedIn === null) {
+    return (
+      <div className="min-h-screen bg-df2b-bg flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-df2b-accent animate-spin" />
+      </div>
+    )
   }
 
   if (!isLoggedIn) {
@@ -55,11 +70,11 @@ export default function App() {
             <button
               key={id}
               onClick={() => setCurrentPage(id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+              className={"w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all " + (
                 currentPage === id
-                  ? 'bg-df2b-accent/20 text-df2b-accent border border-df2b-accent/30'
-                  : 'text-df2b-text-secondary hover:bg-df2b-bg-card'
-              }`}
+                  ? "bg-df2b-accent/20 text-df2b-accent border border-df2b-accent/30"
+                  : "text-df2b-text-secondary hover:bg-df2b-bg-card"
+              )}
             >
               <Icon size={20} />
               <span className="text-sm font-medium">{label}</span>
