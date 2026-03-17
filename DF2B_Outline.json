@@ -1,0 +1,82 @@
+{
+  "pages": [
+    {
+      "number": 1,
+      "type": "cover",
+      "title": "DF2B (Don't Forget 2 Breathe)",
+      "content": "Твій якір у штормі. Просто зроби вдих."
+    },
+    {
+      "number": 2,
+      "type": "content",
+      "title": "Філософія та Історія Бренду",
+      "content": "Present the brand story: how the nation metaphorically held its breath since February 2022, the evolutionary mechanism of breath-holding in danger, and how breathing is the only direct 'remote control' for our nervous system. Explain how DF2B was born from the realization that mental health is basic body armor for the psyche."
+    },
+    {
+      "number": 3,
+      "type": "content",
+      "title": "Місія та Глобальні Цілі",
+      "content": "Present the mission to create the most accessible, barrier-free, deeply personalized psychological support tool in every Ukrainian's pocket 24/7. Showcase the five extended project goals: emergency intervention, destigmatization, hyper-personalization, burnout prevention, and civilian life adaptation."
+    },
+    {
+      "number": 4,
+      "type": "content",
+      "title": "Візуальний стиль та UI/UX",
+      "content": "Present the visual design philosophy: DF2B is the complete antithesis of modern social media. Showcase the four key design principles: living breathing interface, light-shadow palette with dark mode as standard, airy minimalism, and haptics as foundation."
+    },
+    {
+      "number": 5,
+      "type": "content",
+      "title": "ШІ-Психолог: Індивідуальні Профілі",
+      "content": "Introduce the AI Psychologist core feature that doesn't sound like ChatGPT or a robot but has a 'human face'. Explain how the AI completely changes its character based on user profile during registration."
+    },
+    {
+      "number": 6,
+      "type": "content",
+      "title": "Профіль: Військові та Ветерани",
+      "content": "Present the military and veteran profile: clear, level, calm tone without toxic positivity. Focus on PTSD, flashbacks, hypervigilance, insomnia, and adrenaline crashes. Show the utilitarian interface with quick access to grounding techniques and square breathing."
+    },
+    {
+      "number": 7,
+      "type": "content",
+      "title": "Профіль: Літні Люди",
+      "content": "Present the elderly profile: extremely respectful, warm, patient tone ready to listen to memories for hours. Focus on reducing background anxiety from news, fighting acute loneliness, and fear for grandchildren. Show enlarged fonts, high contrast, and voice-first interface."
+    },
+    {
+      "number": 8,
+      "type": "content",
+      "title": "Профіль: Діти та Батьки",
+      "content": "Present the children profile: playful, fairytale-like, absolutely safe tone with animated guide like a calm bear or firefly. Focus on processing fear of explosions through fairy tale therapy and validating emotions. Show interactive interface with breathing exercises as games."
+    },
+    {
+      "number": 9,
+      "type": "content",
+      "title": "Профіль: Підлітки",
+      "content": "Present the teenager profile: equal-level tone using modern slang without cringe, acting as an unbiased friend-mentor. Focus on lost youth due to war, fear of uncertain future, social isolation, and parent conflicts. Show protected PIN-code emotion diary and music integration."
+    },
+    {
+      "number": 10,
+      "type": "content",
+      "title": "Профіль: Цивільні Дорослі",
+      "content": "Present the civilian adult profile: supportive, structured, professional tone. Focus on survivor's guilt, total emotional and work burnout, balancing work, volunteering, and family under constant alerts. Show micro-session integration into busy work schedules."
+    },
+    {
+      "number": 11,
+      "type": "content",
+      "title": "Ключові Функції",
+      "content": "Present the five key features: SOS Emergency Grounding button, AI Psychologist Chat Room, Breathing Practices Library, Audio Room with Safe Soundscapes, and Mental State Tracker. Each feature addresses specific user needs with thoughtful design."
+    },
+    {
+      "number": 12,
+      "type": "content",
+      "title": "Чому Це Спрацює?",
+      "content": "Present the investment and impact value: acute social need with catastrophic shortage of psychologists, anonymity as key removing barriers, scalability through LLM architecture for global crisis adaptation, and low entry threshold with help available at 2 AM during air raid alerts."
+    },
+    {
+      "number": 13,
+      "type": "final",
+      "title": "DF2B: Твій Кишеньковий Простір Безпеки",
+      "content": "Я тут. Ти в безпеці. Давай подихаємо разом."
+    }
+  ]
+}

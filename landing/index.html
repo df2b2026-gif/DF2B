@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DF2B - Don't Forget 2 Breathe | Твій якір у штормі</title>
+    <meta name="description" content="DF2B - ментальна підтримка 24/7. Дихальні практики, AI-психолог, аудіо-простір для заспокоєння.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        df2b: {
+                            bg: '#0F1419',
+                            'bg-secondary': '#1A1F26',
+                            'bg-card': '#252B33',
+                            accent: '#D4A574',
+                            'accent-light': '#E8C9A0',
+                            text: '#F5F0E8',
+                            'text-secondary': '#B8B0A4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        quote: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .font-quote { font-family: 'Cormorant Garamond', serif; }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 165, 116, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 165, 116, 0.6); }
+        }
+        
+        .animate-breathe { animation: breathe 6s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #D4A574 0%, #E8C9A0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(37, 43, 51, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F1419; }
+        ::-webkit-scrollbar-thumb { background: #D4A574; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-df2b-bg text-df2b-text overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-df2b-bg/90 backdrop-blur-lg border-b border-df2b-accent/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full bg-df2b-accent/20 flex items-center justify-center">
+                        <span class="text-df2b-accent font-bold">DF2B</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors">Про нас</a>
+                    <a href="#mission" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors">Місія</a>
+                    <a href="#features" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors">Можливості</a>
+                    <a href="#mental-health" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors">Ментальне здоров'я</a>
+                    <a href="#install" class="df2b-button bg-df2b-accent text-df2b-bg px-5 py-2 rounded-full font-medium hover:bg-df2b-accent-light transition-colors">
+                        Встановити
+                    </a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-df2b-text">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-df2b-bg-secondary border-t border-df2b-accent/10">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#about" class="block text-df2b-text-secondary hover:text-df2b-accent">Про нас</a>
+                <a href="#mission" class="block text-df2b-text-secondary hover:text-df2b-accent">Місія</a>
+                <a href="#features" class="block text-df2b-text-secondary hover:text-df2b-accent">Можливості</a>
+                <a href="#mental-health" class="block text-df2b-text-secondary hover:text-df2b-accent">Ментальне здоров'я</a>
+                <a href="#install" class="block bg-df2b-accent text-df2b-bg px-5 py-2 rounded-full text-center font-medium">Встановити</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-df2b-accent/10 rounded-full blur-3xl animate-breathe"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-df2b-accent/5 rounded-full blur-3xl animate-breathe" style="animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="mb-6 animate-float">
+                <div class="inline-block px-4 py-2 rounded-full bg-df2b-accent/10 border border-df2b-accent/30 mb-6">
+                    <span class="text-df2b-accent text-sm font-medium">Ментальна підтримка 24/7</span>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                <span class="gradient-text">DF2B</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-df2b-text-secondary mb-4 font-quote italic">
+                "Don't Forget 2 Breathe"
+            </p>
+            <p class="text-lg md:text-xl text-df2b-text-secondary mb-10 max-w-2xl mx-auto">
+                Твій якір у штормі. Просто зроби вдих.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#install" class="bg-df2b-accent text-df2b-bg px-8 py-4 rounded-full font-semibold text-lg hover:bg-df2b-accent-light transition-all hover:scale-105 animate-pulse-glow">
+                    <i class="fas fa-download mr-2"></i>
+                    Встановити застосунок
+                </a>
+                <a href="#about" class="border border-df2b-accent text-df2b-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-df2b-accent/10 transition-all">
+                    Дізнатися більше
+                </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-df2b-accent">24/7</div>
+                    <div class="text-sm text-df2b-text-secondary">Доступність</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-df2b-accent">100%</div>
+                    <div class="text-sm text-df2b-text-secondary">Анонімність</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-df2b-accent">0₴</div>
+                    <div class="text-sm text-df2b-text-secondary">Базова версія</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-df2b-accent text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Історія бренду</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Як народився DF2B</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-df2b-accent/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-lungs text-df2b-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Еволюційний механізм</h3>
+                                    <p class="text-df2b-text-secondary leading-relaxed">
+                                        Коли людині загрожує небезпека, тіло реагує інстинктивно: ми завмираємо, напружуємо м'язи і... <span class="text-df2b-accent font-medium">затримуємо подих</span>. Це давній еволюційний механізм виживання. Але що робити, коли небезпека триває не хвилини, а роки?
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-df2b-accent/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-flag text-df2b-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Лютий 2022</h3>
+                                    <p class="text-df2b-text-secondary leading-relaxed">
+                                        Наша нація метафорично затримала подих у лютому 2022 року. Роки повномасштабної війни, сирен, втрат та очікувань призвели до того, що мільйони людей живуть у стані <span class="text-df2b-accent font-medium">хронічного стресу</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-df2b-accent/20 flex items-center justify-center shrink-0">
+                                    <i class="fas fa-gamepad text-df2b-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Єдиний "пульт керування"</h3>
+                                    <p class="text-df2b-text-secondary leading-relaxed">
+                                        Дихання — це унікальний процес. Це єдина функція нашого організму, яка працює автоматично, але яку ми здатні контролювати свідомо. Це єдиний прямий <span class="text-df2b-accent font-medium">"пульт керування"</span> нашою нервовою системою.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-2xl p-6 border border-df2b-accent/30">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-df2b-accent flex items-center justify-center shrink-0">
+                                    <i class="fas fa-shield-alt text-df2b-bg text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Базовий бронежилет для психіки</h3>
+                                    <p class="text-df2b-text-secondary leading-relaxed">
+                                        Бренд DF2B народився з усвідомлення: ментальне здоров'я сьогодні — це не привілей мирного часу, це <span class="text-df2b-accent font-medium">базовий бронежилет</span> для нашої психіки.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quote -->
+                <div class="mt-16 text-center">
+                    <blockquote class="font-quote text-2xl md:text-3xl italic text-df2b-text-secondary max-w-3xl mx-auto">
+                        "DF2B — це не просто додаток. Це кишеньковий, абсолютно безпечний простір, який завжди поруч і який каже: <span class="text-df2b-accent">Я тут. Ти в безпеці. Давай подихаємо разом</span>."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-24 bg-df2b-bg-secondary relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Наша місія</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Місія та глобальні цілі</h2>
+                    <p class="text-df2b-text-secondary text-lg max-w-2xl mx-auto">
+                        Створити найдоступніший, безбар'єрний та глибоко персоналізований інструмент психологічної підтримки, який буде в кишені кожного українця 24/7
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Goal 1 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-df2b-accent/30 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-df2b-accent/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-heartbeat text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Екстрена інтервенція</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Дієвий інструмент для миттєвого купірування панічних атак, тривожних станів та гострих проявів ПТСР <span class="text-df2b-accent">"тут і зараз"</span>, до того, як людина зможе дістатися до фахівця.
+                        </p>
+                    </div>
+                    
+                    <!-- Goal 2 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-df2b-accent/30 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-df2b-accent/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-user-secret text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Тотальна дестигматизація</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Зруйнувати міф про те, що звертатися по психологічну допомогу — це прояв слабкості. Спілкування з ШІ-психологом є <span class="text-df2b-accent">анонімним</span>, що знімає бар'єр сорому.
+                        </p>
+                    </div>
+                    
+                    <!-- Goal 3 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-df2b-accent/30 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-df2b-accent/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-user-cog text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Гіперперсоналізація</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Система розуміє, що біль ветерана, виснаження волонтера і страх дитини вимагають <span class="text-df2b-accent">абсолютно різного</span> словника, тону та методів.
+                        </p>
+                    </div>
+                    
+                    <!-- Goal 4 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-df2b-accent/30 transition-all hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-df2b-accent/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-spa text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Профілактика вигорання</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Формування щоденної звички приділяти <span class="text-df2b-accent">3-5 хвилин</span> своєму ментальному стану, щоб запобігти нервовим зривам та клінічним депресіям.
+                        </p>
+                    </div>
+                    
+                    <!-- Goal 5 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-df2b-accent/30 transition-all hover:-translate-y-1 md:col-span-2 lg:col-span-2">
+                        <div class="w-14 h-14 rounded-xl bg-df2b-accent/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-home text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Адаптація до цивільного життя</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Допомога ветеранам у процесі реінтеграції у суспільство, робота з флешбеками та адреналіновою залежністю. Підтримка на кожному етапі повернення до мирного життя.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Можливості</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Що вміє DF2B</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-heartbeat text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">SOS Кнопка</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Миттєва активація "протоколу панічної атаки". Пульсуюче коло, вібрація та голосові інструкції для заспокоєння.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-robot text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">AI-Психолог</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            5 унікальних профілів спілкування. Адаптивний тон для військових, літніх, дітей, підлітків та цивільних.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-wind text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Дихальні практики</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Квадратне дихання, 4-7-8, когерентне дихання та інші техніки з візуальними інструкціями та таймером.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-headphones text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Аудіо-простір</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Безпечні саундскейпи: ліс, дощ, океан, білий шум. Без різких звуків-тригерів. Таймер сну.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-line text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Трекер настрою</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Щоденний чек-ін одним дотиком. Календар настрою, статистика та AI-рекомендації.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="glass-card rounded-2xl p-6 group hover:bg-df2b-accent/5 transition-all">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-df2b-accent/30 to-df2b-accent/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-mobile-alt text-df2b-accent text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Тактильна підтримка</h3>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Вібрація синхронізована з диханням. Притисни телефон до грудей і дихай разом з ним.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mental Health Section -->
+    <section id="mental-health" class="py-24 bg-df2b-bg-secondary relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Важливо знати</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Чому ментальне здоров'я важливе</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-brain text-df2b-accent"></i>
+                            Це не слабкість
+                        </h3>
+                        <p class="text-df2b-text-secondary leading-relaxed mb-4">
+                            Звертатися по психологічну допомогу — це не прояв слабкості. Це прояв мудрості та сили. Так само, як ми лікуємо фізичні рани, нам потрібно лікувати й емоційні.
+                        </p>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Війна зачіпає кожного — і ті, хто на фронті, і ті, хто в тилу. <span class="text-df2b-accent">Хронічний стрес</span> — це нормальна реакція на ненормальну ситуацію.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-4 flex items-center gap-3">
+                            <i class="fas fa-clock text-df2b-accent"></i>
+                            Час працює проти нас
+                        </h3>
+                        <p class="text-df2b-text-secondary leading-relaxed mb-4">
+                            В Україні катастрофічно не вистачає живих спеціалістів-психологів, щоб покрити потреби мільйонів травмованих людей.
+                        </p>
+                        <p class="text-df2b-text-secondary leading-relaxed">
+                            Чим довше ми ігноруємо симптоми, тим глибшими стають травми. <span class="text-df2b-accent">Профілактика</span> завжди ефективніша за лікування.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Signs Section -->
+                <div class="glass-card rounded-2xl p-8 mb-16">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">Ознаки, що тобі потрібна підтримка</h3>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Постійна втома без причини</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Проблеми зі сном</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Дратівливість та агресія</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Панічні атаки</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Відчуття безнадії</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Соціальна ізоляція</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Флешбеки та кошмари</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-df2b-accent mt-1"></i>
+                            <span class="text-df2b-text-secondary">Втрата інтересу до життя</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <p class="text-xl text-df2b-text-secondary mb-6 max-w-2xl mx-auto">
+                        Не чекай, поки стане гірше. Подбай про своє ментальне здоров'я сьогодні.
+                    </p>
+                    <a href="#install" class="inline-flex items-center gap-2 bg-df2b-accent text-df2b-bg px-8 py-4 rounded-full font-semibold text-lg hover:bg-df2b-accent-light transition-all hover:scale-105">
+                        <i class="fas fa-download"></i>
+                        Почати дбати про себе
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Install Section -->
+    <section id="install" class="py-24">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-12">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Встановлення</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Як встановити DF2B</h2>
+                    <p class="text-df2b-text-secondary text-lg">
+                        DF2B — це PWA-застосунок. Встанови його на свій пристрій за кілька секунд.
+                    </p>
+                </div>
+                
+                <!-- Platform Tabs -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <button onclick="showPlatform('android')" id="tab-android" class="platform-tab px-6 py-3 rounded-full bg-df2b-accent text-df2b-bg font-medium transition-all">
+                        <i class="fab fa-android mr-2"></i>Android
+                    </button>
+                    <button onclick="showPlatform('ios')" id="tab-ios" class="platform-tab px-6 py-3 rounded-full bg-df2b-bg-card text-df2b-text-secondary font-medium transition-all hover:text-df2b-accent">
+                        <i class="fab fa-apple mr-2"></i>iPhone
+                    </button>
+                    <button onclick="showPlatform('desktop')" id="tab-desktop" class="platform-tab px-6 py-3 rounded-full bg-df2b-bg-card text-df2b-text-secondary font-medium transition-all hover:text-df2b-accent">
+                        <i class="fas fa-desktop mr-2"></i>Комп'ютер
+                    </button>
+                </div>
+                
+                <!-- Android Instructions -->
+                <div id="instructions-android" class="glass-card rounded-2xl p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center">
+                            <i class="fab fa-android text-green-500 text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Android</h3>
+                            <p class="text-df2b-text-secondary">Chrome або Samsung Internet</p>
+                        </div>
+                    </div>
+                    
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">1</span>
+                            <div>
+                                <p class="text-df2b-text">Відкрий цей сайт у браузері <span class="text-df2b-accent">Chrome</span></p>
+                                <p class="text-df2b-text-secondary text-sm">(або Samsung Internet)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">2</span>
+                            <div>
+                                <p class="text-df2b-text">Натисни кнопку меню <i class="fas fa-ellipsis-v text-df2b-accent mx-1"></i> у верхньому правому куті</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">3</span>
+                            <div>
+                                <p class="text-df2b-text">Обери <span class="text-df2b-accent font-medium">"Встановити застосунок"</span> або <span class="text-df2b-accent font-medium">"Додати на головний екран"</span></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">4</span>
+                            <div>
+                                <p class="text-df2b-text">Підтверди встановлення</p>
+                                <p class="text-df2b-text-secondary text-sm">Готово! DF2B з'явиться на твоєму головному екрані</p>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <div class="mt-6 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                        <p class="text-green-400 text-sm flex items-center gap-2">
+                            <i class="fas fa-info-circle"></i>
+                            Після встановлення застосунок працюватиме офлайн!
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- iOS Instructions -->
+                <div id="instructions-ios" class="glass-card rounded-2xl p-8 hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-gray-500/20 flex items-center justify-center">
+                            <i class="fab fa-apple text-gray-400 text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">iPhone / iPad</h3>
+                            <p class="text-df2b-text-secondary">Safari</p>
+                        </div>
+                    </div>
+                    
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">1</span>
+                            <div>
+                                <p class="text-df2b-text">Відкрий цей сайт у браузері <span class="text-df2b-accent">Safari</span></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">2</span>
+                            <div>
+                                <p class="text-df2b-text">Натисни кнопку <i class="fas fa-share text-df2b-accent mx-1"></i> "Поділитися" внизу екрана</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">3</span>
+                            <div>
+                                <p class="text-df2b-text">Прокрути вниз і обери <span class="text-df2b-accent font-medium">"На екрані 'Додому'"</span></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">4</span>
+                            <div>
+                                <p class="text-df2b-text">Натисни <span class="text-df2b-accent font-medium">"Додати"</span> у верхньому правому куті</p>
+                                <p class="text-df2b-text-secondary text-sm">Готово! DF2B з'явиться на твоєму головному екрані</p>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <div class="mt-6 p-4 bg-gray-500/10 rounded-xl border border-gray-500/20">
+                        <p class="text-gray-400 text-sm flex items-center gap-2">
+                            <i class="fas fa-info-circle"></i>
+                            На iOS застосунок відкриватиметься в Safari, але з повнофункціональним інтерфейсом
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Instructions -->
+                <div id="instructions-desktop" class="glass-card rounded-2xl p-8 hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                            <i class="fas fa-desktop text-blue-400 text-3xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold">Комп'ютер</h3>
+                            <p class="text-df2b-text-secondary">Chrome, Edge, Firefox</p>
+                        </div>
+                    </div>
+                    
+                    <ol class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">1</span>
+                            <div>
+                                <p class="text-df2b-text">Відкрий цей сайт у браузері <span class="text-df2b-accent">Chrome</span> або <span class="text-df2b-accent">Edge</span></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">2</span>
+                            <div>
+                                <p class="text-df2b-text">Натисни на іконку <i class="fas fa-download text-df2b-accent mx-1"></i> у адресному рядку (праворуч)</p>
+                                <p class="text-df2b-text-secondary text-sm">Або натисни Ctrl+J (Cmd+J на Mac)</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">3</span>
+                            <div>
+                                <p class="text-df2b-text">Натисни <span class="text-df2b-accent font-medium">"Встановити"</span></p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="w-8 h-8 rounded-full bg-df2b-accent/20 flex items-center justify-center shrink-0 text-df2b-accent font-semibold">4</span>
+                            <div>
+                                <p class="text-df2b-text">DF2B відкриється у вікні без адресного рядка</p>
+                                <p class="text-df2b-text-secondary text-sm">Можеш закріпити на панелі задач!</p>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <div class="mt-6 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                        <p class="text-blue-400 text-sm flex items-center gap-2">
+                            <i class="fas fa-info-circle"></i>
+                            На комп'ютері застосунок працює як окреме вікно без відволікаючих елементів браузера
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Direct Link Button -->
+                <div class="mt-8 text-center">
+                    <a href="https://df2b-app.netlify.app" target="_blank" class="inline-flex items-center gap-2 bg-df2b-accent text-df2b-bg px-8 py-4 rounded-full font-semibold text-lg hover:bg-df2b-accent-light transition-all hover:scale-105">
+                        <i class="fas fa-external-link-alt"></i>
+                        Перейти до застосунку
+                    </a>
+                    <p class="text-df2b-text-secondary text-sm mt-3">
+                        Або відскануй QR-код
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Goals Section -->
+    <section class="py-24 bg-df2b-bg-secondary">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <span class="text-df2b-accent text-sm font-medium tracking-wider uppercase">Плани на майбутнє</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Що буде далі</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-df2b-accent/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-watch text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Wearable інтеграція</h3>
+                        <p class="text-df2b-text-secondary text-sm">Синхронізація з Apple Watch, Fitbit для відстеження пульсу під час дихання</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-df2b-accent/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Групові сесії</h3>
+                        <p class="text-df2b-text-secondary text-sm">Спільні медитації та дихальні практики в реальному часі</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-df2b-accent/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-calendar-check text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Інтеграція з календарем</h3>
+                        <p class="text-df2b-text-secondary text-sm">Розумні нагадування на основі твого розкладу</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-df2b-accent/20 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-file-medical text-df2b-accent text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Експорт для терапевта</h3>
+                        <p class="text-df2b-text-secondary text-sm">Можливість поділитися статистикою зі своїм психологом</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-df2b-accent/10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-df2b-accent/20 flex items-center justify-center">
+                        <span class="text-df2b-accent font-bold text-sm">DF2B</span>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Don't Forget 2 Breathe</p>
+                        <p class="text-df2b-text-secondary text-sm">Твій якір у штормі</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="#about" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors text-sm">Про нас</a>
+                    <a href="#mission" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors text-sm">Місія</a>
+                    <a href="#features" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors text-sm">Можливості</a>
+                    <a href="#install" class="text-df2b-text-secondary hover:text-df2b-accent transition-colors text-sm">Встановити</a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-df2b-bg-card flex items-center justify-center hover:bg-df2b-accent/20 transition-colors">
+                        <i class="fab fa-telegram text-df2b-text-secondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-df2b-bg-card flex items-center justify-center hover:bg-df2b-accent/20 transition-colors">
+                        <i class="fab fa-instagram text-df2b-text-secondary"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-df2b-bg-card flex items-center justify-center hover:bg-df2b-accent/20 transition-colors">
+                        <i class="fab fa-facebook text-df2b-text-secondary"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-df2b-accent/10 text-center">
+                <p class="text-df2b-text-secondary text-sm">
+                    © 2024 DF2B. Всі права захищені. 
+                    <span class="block mt-1">Якщо ти відчуваєш гострий психологічний дискомфорт — звернись до фахівця.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Platform tabs
+        function showPlatform(platform) {
+            // Hide all instructions
+            document.querySelectorAll('[id^="instructions-"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show selected
+            document.getElementById('instructions-' + platform).classList.remove('hidden');
+            
+            // Update tabs
+            document.querySelectorAll('.platform-tab').forEach(tab => {
+                tab.classList.remove('bg-df2b-accent', 'text-df2b-bg');
+                tab.classList.add('bg-df2b-bg-card', 'text-df2b-text-secondary');
+            });
+            
+            document.getElementById('tab-' + platform).classList.remove('bg-df2b-bg-card', 'text-df2b-text-secondary');
+            document.getElementById('tab-' + platform).classList.add('bg-df2b-accent', 'text-df2b-bg');
+        }
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section-fade').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

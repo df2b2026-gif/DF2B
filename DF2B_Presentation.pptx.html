@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DF2B (Don't Forget 2 Breathe)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oranienbaum&amp;family=Unna:wght@400;700&amp;family=Quattrocento+Sans:wght@400;700&amp;family=Sorts+Mill+Goudy:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdmirror.com/npm/mathjax@3.2.2/es5/tex-svg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .ppt-slide {
+                @apply relative w-[1280px] h-[720px] mx-auto p-[40px] box-border overflow-hidden mb-[40px];
+            }
+        }
+    </style>
+<style>
+        body {
+            color: #F7FAFC;
+            font-family: 'Quattrocento Sans', sans-serif;
+        }
+        .font-display {
+            font-family: 'Oranienbaum', serif;
+        }
+        .font-heading {
+            font-family: 'Unna', serif;
+        }
+        .font-body {
+            font-family: 'Sorts Mill Goudy', serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 py-8">
+<!-- Slide 1: Cover -->
+<div class="ppt-slide !bg-[#1A202C]" type="cover">
+<img alt="Cover" class="absolute inset-0 w-full h-full object-cover opacity-60" src="df2b_cover.png"/>
+<div class="absolute inset-0 bg-gradient-to-b from-[#1A202C]/70 via-[#1A202C]/50 to-[#1A202C]/90"></div>
+<div class="relative z-10 h-full flex flex-col justify-center items-center text-center">
+<div class="mb-8">
+<div class="inline-block px-8 py-3 border-2 border-[#D69E2E] rounded-full mb-8">
+<p class="text-xl tracking-[0.3em] text-[#D69E2E] font-semibold">МЕНТАЛЬНЕ ЗДОРОВ'Я</p>
+</div>
+</div>
+<h1 class="font-display text-[120px] font-bold text-[#F7FAFC] mb-6 leading-none tracking-tight">DF2B</h1>
+<p class="font-heading text-4xl text-[#D69E2E] mb-8 tracking-wide">Don't Forget 2 Breathe</p>
+<div class="w-32 h-0.5 bg-[#D69E2E] mb-10"></div>
+<p class="font-body text-3xl text-[#F7FAFC]/90 max-w-3xl leading-relaxed italic">Твій якір у штормі. Просто зроби вдих.</p>
+</div>
+</div>
+<!-- Slide 2: Brand Philosophy -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-8">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Brand Story</p>
+<h2 class="font-display text-6xl font-bold text-[#F7FAFC] leading-tight">Філософія та Історія Бренду</h2>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-8">
+<div class="flex flex-col justify-center space-y-6">
+<div>
+<h3 class="font-heading text-3xl font-bold text-[#D69E2E] mb-4">Еволюційний Механізм</h3>
+<p class="text-xl text-[#F7FAFC]/90 leading-relaxed font-body">Коли людині загрожує небезпека, її тіло реагує інстинктивно: ми завмираємо, напружуємо м'язи і... <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>затримуємо подих</strong></span>. Це давній еволюційний механізм виживання. Але що робити, коли небезпека триває не хвилини, а роки?</p>
+</div>
+<div>
+<h3 class="font-heading text-3xl font-bold text-[#D69E2E] mb-4">Нація, що Затримала Подих</h3>
+<p class="text-xl text-[#F7FAFC]/90 leading-relaxed font-body">Наша нація метафорично затримала подих у лютому 2022 року. Роки повномасштабної війни, сирен, втрат та очікувань призвели до того, що мільйони людей живуть у стані <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>хронічного стресу</strong></span>.</p>
+</div>
+</div>
+<div class="flex flex-col justify-center space-y-6">
+<div class="bg-[#2D3748] p-8 rounded-lg border-l-4 border-[#D69E2E]">
+<div class="flex items-start gap-4">
+<i class="fas fa-lungs text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Єдиний "Пульт Керування"</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Дихання — це унікальний процес. Це єдина функція нашого організму, яка працює автоматично, але яку ми здатні контролювати свідомо. Це єдиний прямий <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>"пульт керування"</strong></span> нашою нервовою системою.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#4A5568] p-8 rounded-lg">
+<div class="flex items-start gap-4">
+<i class="fas fa-shield-alt text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Базовий Бронежилет для Психіки</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Бренд DF2B народився з усвідомлення: ментальне здоров'я сьогодні — це не привілей мирного часу, це <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>базовий бронежилет</strong></span> для нашої психіки.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 bg-[#D69E2E]/10 p-6 rounded-lg border border-[#D69E2E]/30">
+<p class="text-xl text-[#F7FAFC] text-center font-body italic">"DF2B — це не просто додаток. Це кишеньковий, абсолютно безпечний простір, який завжди поруч і який каже: <span class="text-[#D69E2E] font-bold">Я тут. Ти в безпеці. Давай подихаємо разом</span>."</p>
+</div>
+</div>
+</div>
+<!-- Slide 3: Mission & Goals -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-6">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Mission &amp; Vision</p>
+<h2 class="font-display text-6xl font-bold text-[#F7FAFC] leading-tight">Місія та Глобальні Цілі</h2>
+</div>
+<div class="bg-[#2D3748] p-6 rounded-lg mb-6 border-l-4 border-[#D69E2E]">
+<div class="flex items-center gap-6">
+<i class="fas fa-heart-pulse text-6xl text-[#D69E2E]"></i>
+<div>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC] mb-3">Наша Місія</h3>
+<p class="text-xl text-[#F7FAFC]/90 leading-relaxed font-body">Створити найдоступніший, безбар'єрний та глибоко персоналізований інструмент психологічної підтримки, який буде <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>в кишені кожного українця 24/7</strong></span>, незалежно від його віку, статусу та пережитого травматичного досвіду.</p>
+</div>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-5 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center text-[#1A202C] font-bold text-xl shrink-0">1</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Екстрена Інтервенція</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Дієвий інструмент для миттєвого купірування панічних атак, тривожних станів та гострих проявів ПТСР <span class="text-[#D69E2E] font-semibold">"тут і зараз"</span>, до того, як людина зможе дістатися до фахівця.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center text-[#1A202C] font-bold text-xl shrink-0">2</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Дестигматизація</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Зруйнувати міф про те, що звертатися по психологічну допомогу — це прояв слабості. Спілкування з ШІ-психологом є <span class="text-[#D69E2E] font-semibold">анонімним</span>, що знімає бар'єр сорому.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center text-[#1A202C] font-bold text-xl shrink-0">3</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Гіперперсоналізація</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Система розуміє, що біль ветерана, виснаження волонтера і страх дитини вимагають <span class="text-[#D69E2E] font-semibold">абсолютно різного</span> словника, тону та методів.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center text-[#1A202C] font-bold text-xl shrink-0">4</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Профілактика Вигорання</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Формування щоденної звички приділяти <span class="text-[#D69E2E] font-semibold">3-5 хвилин</span> своєму ментальному стану, щоб запобігти нервовим зривам та клінічним депресіям.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center text-[#1A202C] font-bold text-xl shrink-0">5</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Адаптація до Життя</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Допомога ветеранам у процесі реінтеграції у суспільство, робота з флешбеками та <span class="text-[#D69E2E] font-semibold">адреналіновою залежністю</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 4: Visual Style & UI/UX -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<img alt="Visual" class="absolute inset-0 w-full h-full object-cover opacity-30" src="df2b_forest.png"/>
+<div class="absolute inset-0 bg-gradient-to-r from-[#1A202C] via-[#1A202C]/95 to-[#1A202C]/80"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="mb-6">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Design Philosophy</p>
+<h2 class="font-display text-6xl font-bold text-[#F7FAFC] leading-tight">Візуальний стиль та UI/UX</h2>
+<p class="text-xl text-[#F7FAFC]/70 mt-3 font-body">DF2B — це повний антипод сучасних соціальних мереж. Тут немає візуального шуму, тригерних червоних сповіщень, нескінченних стрічок новин чи складних меню.</p>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-5">
+<div class="bg-[#2D3748]/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-[#D69E2E]">
+<div class="flex items-start gap-4">
+<i class="fas fa-wind text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">"Живий" Інтерфейс, що Дихає</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Екрани не перемикаються різко, вони <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>плавно "перетікають"</strong></span> один в одний. Головні елементи дизайну пульсують у ритмі фізіологічно ідеального дихання (5.5 секунд вдих, 5.5 секунд видих), підсвідомо налаштовуючи користувача на спокій.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#2D3748]/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-[#D69E2E]">
+<div class="flex items-start gap-4">
+<i class="fas fa-moon text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Світло-Тіньова Палітра</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Глибокі, заспокійливі відтінки. <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Темна тема (Dark Mode) є стандартом</strong></span>, а не опцією. Кольори нічного неба, глибокого океану, м'якого графіту. Екран не сліпить очі в укритті, в окопі або в ліжку під час безсоння.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#2D3748]/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-[#D69E2E]">
+<div class="flex items-start gap-4">
+<i class="fas fa-feather-alt text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Повітряний Мінімалізм</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">На головному екрані є лише те, що потрібно в дану секунду. <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Простір між кнопками (повітря) в дизайні важливіший за самі елементи</strong></span>. Це створює відчуття тихої кімнати, вільної від візуального шуму.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#2D3748]/90 backdrop-blur-sm p-6 rounded-lg border-l-4 border-[#D69E2E]">
+<div class="flex items-start gap-4">
+<i class="fas fa-mobile-alt text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Тактильність (Haptics)</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Додаток використовує вібромотор смартфона на максимум. Під час дихальних вправ телефон <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>м'яко вібрує</strong></span>, імітуючи повільне серцебиття або наповнення легень повітрям. Людина може заплющити очі, притиснути телефон до грудей і "дихати разом з ним".</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 rounded-full bg-[#1A202C] border-2 border-[#4A5568] flex items-center justify-center">
+<i class="fas fa-circle text-[#4A5568] text-2xl"></i>
+</div>
+<span class="text-[#F7FAFC]/70 text-base">Фон: #1A202C</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 rounded-full bg-[#4A5568] border-2 border-[#4A5568] flex items-center justify-center">
+<i class="fas fa-square text-[#2D3748] text-2xl"></i>
+</div>
+<span class="text-[#F7FAFC]/70 text-base">Primary: #4A5568</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 rounded-full bg-[#D69E2E] border-2 border-[#D69E2E] flex items-center justify-center">
+<i class="fas fa-star text-[#1A202C] text-2xl"></i>
+</div>
+<span class="text-[#F7FAFC]/70 text-base">Accent: #D69E2E</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 5: AI Psychologist Introduction -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-6">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Core Feature</p>
+<h2 class="font-display text-6xl font-bold text-[#F7FAFC] leading-tight">ШІ-Психолог: Індивідуальні Профілі</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[45] flex flex-col gap-5">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<i class="fas fa-robot text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">"Людське Обличчя"</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Штучний інтелект у DF2B <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>не звучить як ChatGPT або робот</strong></span>. Він має "людське обличчя" через стиль тексту та голос.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<i class="fas fa-user-circle text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Анонімна Реєстрація</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">Під час першого запуску додаток ставить кілька емпатичних запитань (вік, поточний стан, професія/статус). Реєстрація може бути <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>повністю анонімною</strong></span>.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#D69E2E]/10 p-6 rounded-lg border border-[#D69E2E]/30 flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<i class="fas fa-sync-alt text-4xl text-[#D69E2E] mt-1"></i>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Повна Трансформація</h3>
+<p class="text-lg text-[#F7FAFC]/85 leading-relaxed font-body">На основі відповідей ШІ <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>повністю змінює свій "характер"</strong></span> — тон спілкування, фокус роботи та інтерфейс адаптуються під кожну групу користувачів.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[55] bg-[#2D3748] p-6 rounded-lg">
+<h3 class="font-heading text-3xl font-bold text-[#D69E2E] mb-5 text-center">5 Індивідуальних Профілів</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-4 bg-[#4A5568] p-4 rounded-lg">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-shield-alt text-[#1A202C] text-2xl"></i>
+</div>
+<div class="flex-1">
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC] mb-1">Військові та Ветерани</h4>
+<p class="text-base text-[#F7FAFC]/70">Чіткий, рівний, спокійний тон. Фокус на ПТСР, флешбеки, гіперпильність.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-[#4A5568] p-4 rounded-lg">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-user-friends text-[#1A202C] text-2xl"></i>
+</div>
+<div class="flex-1">
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC] mb-1">Літні Люди</h4>
+<p class="text-base text-[#F7FAFC]/70">Надзвичайно поважний, теплий, терплячий тон. Voice-first інтерфейс.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-[#4A5568] p-4 rounded-lg">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-child text-[#1A202C] text-2xl"></i>
+</div>
+<div class="flex-1">
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC] mb-1">Діти та Батьки</h4>
+<p class="text-base text-[#F7FAFC]/70">Ігровий, казковий, абсолютно безпечний тон. Інтерактивні вправи.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-[#4A5568] p-4 rounded-lg">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-user-graduate text-[#1A202C] text-2xl"></i>
+</div>
+<div class="flex-1">
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC] mb-1">Підлітки</h4>
+<p class="text-base text-[#F7FAFC]/70">Тон на рівних, сучасний сленг без крінжу. Неупереджений друг-ментор.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-[#4A5568] p-4 rounded-lg">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-briefcase text-[#1A202C] text-2xl"></i>
+</div>
+<div class="flex-1">
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC] mb-1">Цивільні Дорослі</h4>
+<p class="text-base text-[#F7FAFC]/70">Підтримуючий, структурований, професійний тон. Мікро-сесії.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 6: Military Profile -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">User Profile 1</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Військові та Ветерани</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[40] flex flex-col gap-4">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-shield-alt text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Тон Спілкування</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body"><span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Чіткий, рівний, спокійний</strong></span>. Жодної зайвої лірики, жалю чи "токсичного позитиву". Спілкування нагадує розмову з надійним побратимом або досвідченим інструктором.</p>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-crosshairs text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Фокус Роботи</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">ПТСР та флешбеки</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Гіперпильність та безсоння</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Адреналінові "ямах"</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Нерозуміння з боку цивільних</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[60] bg-[#2D3748] p-6 rounded-lg flex flex-col">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-mobile-alt text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Утилітарний Інтерфейс</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body mb-4">Максимально утилітарний дизайн для швидкого доступу до критичних інструментів у будь-якій ситуації.</p>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-anchor text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Техніки Заземлення</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Швидкий доступ до жорстких технік заземлення: "Назви 5 предметів зі сталі навколо себе" для миттєвого повернення в реальність.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-square text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Квадратне Дихання</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Техніка 4-4-4-4 для швидкого повернення фокусу перед бойовим завданням або під час стресу.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-volume-mute text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Безшумний Режим</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Всі вправи працюють через тактильну вібрацію без звуку для використання в польових умовах.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-bolt text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">SOS Кнопка</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Велика кнопка на головному екрані для миттєвої активації протоколу панічної атаки.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 7: Elderly Profile -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">User Profile 2</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Літні Люди</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[40] flex flex-col gap-4">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-heart text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Тон Спілкування</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body"><span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Надзвичайно поважний, теплий, терплячий</strong></span>. ШІ готовий годинами "слухати" спогади і м'яко повертати людину в стан спокою.</p>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-bullseye text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Фокус Роботи</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Зниження фонової тривожності від телевізійних новин</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Боротьба з гострим почуттям самотності</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Страх за онуків та родину</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Втрата звичного способу життя</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[60] bg-[#2D3748] p-6 rounded-lg flex flex-col">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-mobile-alt text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Voice-First Інтерфейс</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body mb-4">Основний акцент на голосове управління, адже набирати текст на екрані багатьом літнім людям важко.</p>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-font text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Збільшені Шрифти</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Всі текстові елементи мають збільшений розмір шрифту для комфортного читання без напруження очей.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-adjust text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Висока Контрастність</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Максимальна контрастність між текстом та фоном для кращої читабельності при будь-якому освітленні.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-microphone text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Голосове Керування</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Повністю голосовий інтерфейс — від активації додатка до вибору вправ та спілкування з ШІ.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-clock text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Нескінченна Терплячість</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">ШІ ніколи не поспішає, готовий слухати стільки, скільки потрібно, без жодного тиску.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 8: Children Profile -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">User Profile 3</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Діти та Батьки</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[40] flex flex-col gap-4">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-magic text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Тон Спілкування</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body"><span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Ігровий, казковий, абсолютно безпечний</strong></span>. ШІ може бути представлений у вигляді анімованого провідника (спокійний ведмедик або світлячок).</p>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-bullseye text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Фокус Роботи</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Переробка страху вибухів через казкотерапію</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Валідація емоцій: "Те, що ти зараз злишся — це нормально"</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Навчання розпізнавати та називати свої емоції</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Прості техніки саморегуляції в ігровій формі</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[60] bg-[#2D3748] p-6 rounded-lg flex flex-col">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-gamepad text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Інтерактивний Інтерфейс</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body mb-4">Дихальні вправи перетворені на захоплюючі ігри, які діти можуть грати разом з батьками або самостійно.</p>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-cloud text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Гра з Хмарками</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">"Подуй на екран телефону, щоб розігнати хмарки" — додаток використовує мікрофон, щоб фіксувати силу видиху.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-dragon text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Казковий Провідник</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Анімований персонаж (ведмедик, світлячок) супроводжує дитину через всі вправи, розповідаючи історії.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-palette text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Кольорові Емоції</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Діти вчаться асоціювати емоції з кольорами та малювати свій "емоційний пейзаж" через простий інтерфейс.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-users text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Батьківський Контроль</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Батьки можуть відстежувати прогрес дитини, отримувати поради щодо підтримки та спільно проходити вправи.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 9: Teenagers Profile -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">User Profile 4</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Підлітки</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[40] flex flex-col gap-4">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-user-friends text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Тон Спілкування</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body"><span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>На рівних</strong></span>. Використання сучасного сленгу, але без "крінжу" (штучних намагань здаватися підлітком). ШІ виступає в ролі неупередженого друга-ментора.</p>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-bullseye text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Фокус Роботи</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Втрачена через війну юність</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Страх перед невизначеним майбутнім</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Соціальна ізоляція</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Конфлікти з батьками через спільний стрес</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[60] bg-[#2D3748] p-6 rounded-lg flex flex-col">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-mobile-alt text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Підлітковий Інтерфейс</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body mb-4">Сучасний, стильний дизайн з функціями, які підлітки очікують від додатка для ментального здоров'я.</p>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-lock text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Щоденник з PIN-кодом</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Захищений PIN-кодом "Щоденник емоцій", куди підліток може записувати свої думки без страху, що хтось прочитає.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-music text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Інтеграція з Музикою</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Можливість підключити улюблену музику для розслаблення та створення персональних плейлистів для різних настроїв.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-comments text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Неупереджений Слухач</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">ШІ нікого не засуджує, готовий обговорювати будь-які теми — від стосунків до екзистенційних питань.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-chart-line text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Трекер Настрою</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Візуальний трекер емоцій допомагає побачити закономірності та зрозуміти свій емоційний стан.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 10: Civilian Adults Profile -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">User Profile 5</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Цивільні Дорослі</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-[40] flex flex-col gap-4">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-briefcase text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Тон Спілкування</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body"><span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>Підтримуючий, структурований, професійний</strong></span>. ШІ розуміє виклики дорослого життя в умовах війни та пропонує практичні рішення.</p>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-bullseye text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Фокус Роботи</h3>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Провина вцілівшого</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Тотальне емоційне та робоче вигорання</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Балансування між роботою, волонтерством та сім'єю</p>
+</div>
+<div class="flex items-start gap-3">
+<i class="fas fa-check-circle text-[#D69E2E] text-xl mt-1 shrink-0"></i>
+<p class="text-lg text-[#F7FAFC]/90">Постійні тривоги та переривання сну</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-[60] bg-[#2D3748] p-6 rounded-lg flex flex-col">
+<div class="flex items-center gap-4 mb-4">
+<i class="fas fa-mobile-alt text-5xl text-[#D69E2E]"></i>
+<h3 class="font-heading text-3xl font-bold text-[#F7FAFC]">Професійний Інтерфейс</h3>
+</div>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body mb-4">Інтеграція мікро-сесій у щільний робочий графік без відриву від важливих справ.</p>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-clock text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Мікро-сесії</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Швидкі 3-хвилинні паузи на дихання, які легко вписати в робочий день — між зустрічами, в кав'ярні, в укритті.</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-bell text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Розумні Нагадування</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Контекстні нагадування: "Здається, у вас був напружений дзвінок. Зробіть 3 вдихи перед наступною зустріччю?"</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-tasks text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Структуровані Програми</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Готові програми для різних сценаріїв: "Після важкого дня", "Перед важливою розмовою", "Під час відключення світла".</p>
+</div>
+<div class="bg-[#4A5568] p-5 rounded-lg flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-12 h-12 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-chart-bar text-[#1A202C] text-xl"></i>
+</div>
+<h4 class="font-heading text-xl font-bold text-[#F7FAFC]">Аналітика Стану</h4>
+</div>
+<p class="text-base text-[#F7FAFC]/85 leading-relaxed font-body flex-1">Детальна аналітика динаміки стану з рекомендаціями щодо коригування рутини ментальної гігієни.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 11: Key Features -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<img alt="Features" class="absolute inset-0 w-full h-full object-cover opacity-25" src="df2b_candle.png"/>
+<div class="absolute inset-0 bg-gradient-to-b from-[#1A202C]/90 via-[#1A202C]/95 to-[#1A202C]"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="mb-4">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Key Features</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Ключові Функції</h2>
+</div>
+<div class="flex-1 grid grid-cols-3 gap-4">
+<div class="bg-[#2D3748]/95 backdrop-blur-sm p-5 rounded-lg border-t-4 border-[#D69E2E] flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-heartbeat text-[#1A202C] text-2xl"></i>
+</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">SOS Кнопка</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body mb-3 flex-1">Велика, інтуїтивно зрозуміла кнопка на головному екрані. Її натискання активує <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>"протокол панічної атаки"</strong></span>.</p>
+<div class="bg-[#4A5568] p-3 rounded">
+<p class="text-sm text-[#F7FAFC]/80 font-body italic">"Я з тобою. Ти в безпеці. Дивись на коло. Вдих... Видих..."</p>
+</div>
+</div>
+<div class="bg-[#2D3748]/95 backdrop-blur-sm p-5 rounded-lg border-t-4 border-[#D69E2E] flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-comments text-[#1A202C] text-2xl"></i>
+</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Чат з ШІ</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body mb-3 flex-1">Спілкування текстом або голосом. ШІ аналізує не лише сенс слів, але й <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>патерни</strong></span>: якщо людина пише короткими фразами о 3-й ночі, ШІ автоматично переходить у режим заспокоєння.</p>
+<div class="bg-[#4A5568] p-3 rounded">
+<p class="text-sm text-[#F7FAFC]/80 font-body">Адаптивний тон та рекомендації на основі контексту</p>
+</div>
+</div>
+<div class="bg-[#2D3748]/95 backdrop-blur-sm p-5 rounded-lg border-t-4 border-[#D69E2E] flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-wind text-[#1A202C] text-2xl"></i>
+</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Бібліотека Дихання</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body mb-3 flex-1">Колекція дихальних практик для різних ситуацій:</p>
+<div class="space-y-2">
+<div class="bg-[#4A5568] p-2 rounded flex items-center gap-2">
+<i class="fas fa-square text-[#D69E2E]"></i>
+<span class="text-sm text-[#F7FAFC]/90">Квадратне (4-4-4-4) — фокус</span>
+</div>
+<div class="bg-[#4A5568] p-2 rounded flex items-center gap-2">
+<i class="fas fa-moon text-[#D69E2E]"></i>
+<span class="text-sm text-[#F7FAFC]/90">4-7-8 — розслаблення та сон</span>
+</div>
+<div class="bg-[#4A5568] p-2 rounded flex items-center gap-2">
+<i class="fas fa-tint text-[#D69E2E]"></i>
+<span class="text-sm text-[#F7FAFC]/90">"Через трубочку" — зниження пульсу</span>
+</div>
+</div>
+</div>
+<div class="bg-[#2D3748]/95 backdrop-blur-sm p-5 rounded-lg border-t-4 border-[#D69E2E] flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-headphones text-[#1A202C] text-2xl"></i>
+</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Аудіо-кімната</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body mb-3 flex-1">Згенеровані фонові звуки (ліс, дощ, білий шум). Ключова відмінність: алгоритм <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>фільтрує звуки</strong></span>, виключаючи різкі шуми (грім, тріск вогню), які можуть стати тригером.</p>
+<div class="bg-[#4A5568] p-3 rounded">
+<p class="text-sm text-[#F7FAFC]/80 font-body">Безпечні звукові ландшафти для чутливих слухачів</p>
+</div>
+</div>
+<div class="bg-[#2D3748]/95 backdrop-blur-sm p-5 rounded-lg border-t-4 border-[#D69E2E] flex flex-col">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-14 h-14 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-chart-line text-[#1A202C] text-2xl"></i>
+</div>
+<h3 class="font-heading text-xl font-bold text-[#F7FAFC]">Трекер Стану</h3>
+</div>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body mb-3 flex-1">Замість нудних опитувань — <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>одне легке питання на день</strong></span>: "Якого кольору сьогодні твій настрій?" або вибір абстрактної фігури.</p>
+<div class="bg-[#4A5568] p-3 rounded">
+<p class="text-sm text-[#F7FAFC]/80 font-body">AI будує графік стану та радить звернутися до спеціаліста при затяжному спаді</p>
+</div>
+</div>
+<div class="bg-[#D69E2E]/20 backdrop-blur-sm p-5 rounded-lg border-2 border-[#D69E2E] flex flex-col justify-center">
+<div class="text-center">
+<i class="fas fa-infinity text-5xl text-[#D69E2E] mb-3"></i>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">І ще більше...</h3>
+<p class="text-base text-[#F7FAFC]/90 leading-relaxed font-body">Регулярні оновлення з новими функціями на основі зворотного зв'язку від користувачів та останніх досліджень у галузі психології.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 12: Why It Works -->
+<div class="ppt-slide !bg-[#1A202C]" type="content">
+<div class="h-full flex flex-col">
+<div class="mb-6">
+<p class="text-sm font-semibold tracking-[0.2em] text-[#D69E2E] mb-3 uppercase">Investment &amp; Impact</p>
+<h2 class="font-display text-5xl font-bold text-[#F7FAFC] leading-tight">Чому Це Спрацює?</h2>
+</div>
+<div class="flex-1 flex gap-6">
+<div class="flex-1 flex flex-col gap-5">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-users text-[#1A202C] text-3xl"></i>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Гостра Соціальна Потреба</h3>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body">В Україні (та загалом у світі через глобальні кризи) <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>катастрофічно не вистачає живих спеціалістів-психологів</strong></span>, щоб покрити потреби мільйонів травмованих людей.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-user-secret text-[#1A202C] text-3xl"></i>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Анонімність як Ключ</h3>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body">Багато людей не готові йти до психолога через страх осуду, запису в медкартку чи просто сором розповідати свої таємниці живій людині. Додаток <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>знімає цей бар'єр повністю</strong></span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-5">
+<div class="bg-[#2D3748] p-6 rounded-lg border-l-4 border-[#D69E2E] flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-globe text-[#1A202C] text-3xl"></i>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Масштабованість</h3>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body">Архітектура додатка та використання LLM (великих мовних моделей) дозволяє <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>легко перекласти продукт іншими мовами</strong></span> та адаптувати під інші країни, які переживають кризи.</p>
+</div>
+</div>
+</div>
+<div class="bg-[#4A5568] p-6 rounded-lg flex-1 flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full bg-[#D69E2E] flex items-center justify-center shrink-0">
+<i class="fas fa-door-open text-[#1A202C] text-3xl"></i>
+</div>
+<div>
+<h3 class="font-heading text-2xl font-bold text-[#F7FAFC] mb-3">Низький Поріг Входу</h3>
+<p class="text-lg text-[#F7FAFC]/90 leading-relaxed font-body">Не потрібно записуватись на сеанс за тиждень. Допомога доступна <span class="bg-[#D69E2E]/20 px-2 py-1" style="color: #D69E2E;"><strong>о 2-й ночі під час повітряної тривоги</strong></span> — саме тоді, коли вона потрібна найбільше.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-5 bg-[#D69E2E]/10 p-5 rounded-lg border border-[#D69E2E]/30">
+<div class="flex items-center justify-center gap-12">
+<div class="text-center">
+<div class="text-5xl font-bold text-[#D69E2E] font-display mb-2">24/7</div>
+<div class="text-base text-[#F7FAFC]/80">Доступність</div>
+</div>
+<div class="w-px h-16 bg-[#4A5568]"></div>
+<div class="text-center">
+<div class="text-5xl font-bold text-[#D69E2E] font-display mb-2">0₴</div>
+<div class="text-base text-[#F7FAFC]/80">Базова версія</div>
+</div>
+<div class="w-px h-16 bg-[#4A5568]"></div>
+<div class="text-center">
+<div class="text-5xl font-bold text-[#D69E2E] font-display mb-2">100%</div>
+<div class="text-base text-[#F7FAFC]/80">Анонімність</div>
+</div>
+<div class="w-px h-16 bg-[#4A5568]"></div>
+<div class="text-center">
+<div class="text-5xl font-bold text-[#D69E2E] font-display mb-2">5</div>
+<div class="text-base text-[#F7FAFC]/80">Профілів</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 13: Final -->
+<div class="ppt-slide !bg-[#1A202C]" type="final">
+<img alt="Final" class="absolute inset-0 w-full h-full object-cover opacity-50" src="df2b_ocean.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1A202C] via-[#1A202C]/80 to-[#1A202C]/60"></div>
+<div class="relative z-10 h-full flex flex-col justify-center items-center text-center">
+<div class="mb-6">
+<div class="inline-block px-8 py-3 border-2 border-[#D69E2E] rounded-full mb-6">
+<p class="text-xl tracking-[0.3em] text-[#D69E2E] font-semibold">ТВІЙ КИШЕНЬКОВИЙ ПРОСТІР БЕЗПЕКИ</p>
+</div>
+</div>
+<h1 class="font-display text-7xl font-bold text-[#F7FAFC] mb-6 leading-none">DF2B</h1>
+<p class="font-heading text-3xl text-[#D69E2E] mb-8 tracking-wide">Don't Forget 2 Breathe</p>
+<div class="w-32 h-0.5 bg-[#D69E2E] mb-10"></div>
+<p class="font-body text-4xl text-[#F7FAFC] max-w-4xl leading-relaxed mb-12 italic">"Я тут. Ти в безпеці.<br/>Давай подихаємо разом."</p>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<i class="fas fa-lungs text-3xl text-[#D69E2E]"></i>
+<span class="text-xl text-[#F7FAFC]/90">Дихання</span>
+</div>
+<div class="w-px h-8 bg-[#4A5568]"></div>
+<div class="flex items-center gap-3">
+<i class="fas fa-heart text-3xl text-[#D69E2E]"></i>
+<span class="text-xl text-[#F7FAFC]/90">Підтримка</span>
+</div>
+<div class="w-px h-8 bg-[#4A5568]"></div>
+<div class="flex items-center gap-3">
+<i class="fas fa-shield-alt text-3xl text-[#D69E2E]"></i>
+<span class="text-xl text-[#F7FAFC]/90">Безпека</span>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    working_dir: /app
+    ports:
+      - '3001:3001'
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-your-gemini-key}
+      SUPABASE_URL: ${SUPABASE_URL:-https://your.supabase.co}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-your-auth-key}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY:-your-service-key}
+      PORT: 3001
+      NODE_ENV: development
+    command: npm start
+
+  app:
+    build: ./app
+    working_dir: /app
+    ports:
+      - '5173:5173'
+    environment:
+      VITE_API_URL: http://backend:3001
+      VITE_SUPABASE_URL: ${SUPABASE_URL:-https://your.supabase.co}
+      VITE_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-your-auth-key}
+    command: npm run dev -- --host 0.0.0.0
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: df2b
+      POSTGRES_USER: df2b
+      POSTGRES_PASSWORD: df2bpass
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
